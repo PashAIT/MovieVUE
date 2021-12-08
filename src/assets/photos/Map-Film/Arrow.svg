@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150" height="150" viewBox="0 0 150 150">
+  <defs>
+    <filter id="Эллипс_8" x="0" y="0" width="150" height="150" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="15" result="blur"/>
+      <feFlood flood-color="#fff" flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Компонент_27_1" data-name="Компонент 27 – 1" transform="translate(45 45)">
+    <g id="Сгруппировать_16" data-name="Сгруппировать 16" transform="translate(-1720 -844)">
+      <g transform="matrix(1, 0, 0, 1, 1675, 799)" filter="url(#Эллипс_8)">
+        <g id="Эллипс_8-2" data-name="Эллипс 8" transform="translate(45 45)" fill="none" stroke="#23dba8" stroke-width="4">
+          <circle cx="30" cy="30" r="30" stroke="none"/>
+          <circle cx="30" cy="30" r="28" fill="none"/>
+        </g>
+      </g>
+      <path id="Контур_36" data-name="Контур 36" d="M1229.562,4544.942l11.415-11.415,11.415,11.415" transform="translate(508.938 -3665.027)" fill="none" stroke="#23dba8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+  </g>
+</svg>

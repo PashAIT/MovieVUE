@@ -26,10 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @font-face {
-    font-family: Aileron;
-    src: url("../assets/FontFamily/Aileron-Regular.otf");
-}
+
 * {
     margin: 0%;
     padding: 0;
@@ -60,7 +57,7 @@ export default {
         .india-container {
             background-image: url("../assets/photos/Map-Film/India.svg");
             top: 41%;
-            left: 40%;
+            left: 41%;
         }
         .southKorea-container {
             background-image: url("../assets/photos/Map-Film/Korea.svg");
