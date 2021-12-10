@@ -109,7 +109,7 @@ export default {
     }
   }
 }
-@keyframes flagName {
+@keyframes flagName     {
   0% {
     left: 10px;
     opacity: 0;
