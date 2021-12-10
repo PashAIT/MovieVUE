@@ -11,22 +11,56 @@
               style="width: 100%"
             />
             <div class="middle">
-              <img class="play-img" src="../assets">
+              <img
+                class="play-img"
+                src="../assets/photos/Map-Film/play-icon.png"
+                @click="$router.push('/movie')"
+              />
             </div>
+            <h4 class="movies-title">Spider Man: No way home</h4>
           </div>
-          <h4 class="movies-title">Spider Man: No way home</h4>
         </div>
         <div class="move2 movies">
-          <!-- <img src="../assets/photos/Map-Film/Spider-Man.jpg" alt="spiderMan" /> -->
-          <h4 class="movies-title">Spider Man: No way home</h4>
+          <div class="img-div">
+            <img
+              src="../assets/photos/Map-Film/Spider-Man.jpg"
+              alt="spiderMan"
+              class="image"
+              style="width: 100%"
+            />
+            <div class="middle">
+              <img
+                class="play-img"
+                src="../assets/photos/Map-Film/play-icon.png"
+              />
+            </div>
+            <h4 class="movies-title">Spider Man: No way home</h4>
+          </div>
         </div>
         <div class="move3 movies">
-          <!-- <img src="../assets/photos/Map-Film/Spider-Man.jpg" alt="spiderMan" /> -->
-          <h4 class="movies-title">Spider Man: No way home</h4>
+          <div class="img-div">
+            <img
+              src="../assets/photos/Map-Film/Spider-Man.jpg"
+              alt="spiderMan"
+              class="image"
+              style="width: 100%"
+            />
+            <div class="middle">
+              <img
+                class="play-img"
+                src="../assets/photos/Map-Film/play-icon.png"
+              />
+            </div>
+            <h4 class="movies-title">Spider Man: No way home</h4>
+          </div>
         </div>
       </div>
       <div class="globus">
-        <img src="../assets/photos/Map-Film/Globe.svg" alt="" />
+        <img
+          src="../assets/photos/Map-Film/Globe.svg"
+          alt="Globus"
+          @click="$router.push('/map')"
+        />
       </div>
     </div>
   </div>
@@ -37,8 +71,10 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/mixins.scss';
 .country {
   background-color: #000000;
+  font-family: Aileron;
   &-container {
     height: 100vh;
     background-image: url("../assets/photos/Map-Film/united-kingdom.svg");
@@ -56,17 +92,13 @@ export default {};
       .movies {
         .img-div {
           position: relative;
-          width: 50%;
+
+          width: 260px;
+          height: 346px;
           img {
-            // width: 260px;
-            // height: 346px;
             border-radius: 20px;
           }
-          h4 {
-            color: #fff;
-            font-size: 20px;
-            play-img-align: center;
-          }
+
           .image {
             opacity: 1;
             display: block;
@@ -84,45 +116,35 @@ export default {};
             left: 50%;
             transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
-            play-img-align: center;
+            text-align: center;
           }
-
-          
 
           .play-img {
-              width: 20%;
-              height: 20%;
-            background-color: #04aa6d;
-            color: white;
-            font-size: 16px;
             padding: 16px 32px;
+            cursor: pointer;
           }
         }
+        h4 {
+          margin-top: 10px;
+          color: #fff;
+          font-size: 20px;
+          text-align: center;
+        }
         .img-div:hover {
-            .image {
-              opacity: 0.3;
-            }
+          .image {
+            opacity: 0.6;
           }
+        }
 
-          .img-div:hover {
-            .middle {
-              opacity: 1;
-            }
+        .img-div:hover {
+          .middle {
+            opacity: 1;
           }
+        }
       }
     }
     .globus {
-      display: flex;
-      justify-content: flex-end;
-      img {
-        cursor: pointer;
-        transform: rotate(0deg);
-        transition: 0.6s;
-      }
-      img:hover {
-        transform: rotate(320deg);
-        transition: 0.6s;
-      }
+      @include globusTransform();
     }
   }
 }

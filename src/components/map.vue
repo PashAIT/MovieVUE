@@ -1,7 +1,7 @@
 <template>
    <div class="map">
         <div class="left-container">
-            <div class="usa-container flags">
+            <div class="usa-container flags" @click="$router.push('/country')">
                 <h3>U.S.A</h3>
             </div>
         </div>
@@ -27,11 +27,7 @@ export default {
 
 <style lang="scss" scoped>
 
-* {
-    margin: 0%;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 .map {
     height: 100vh;
     display: grid;
@@ -46,7 +42,7 @@ export default {
         position: relative;
 
         .usa-container {
-            background-image: url("../assets/photos/Map-Film/USA.svg");
+            background-image: url("../../public/assets/images/USA.svg");
             top: 20%;
             left: 37%;
         }
@@ -55,17 +51,17 @@ export default {
         position: relative;
 
         .india-container {
-            background-image: url("../assets/photos/Map-Film/India.svg");
+            background-image: url("../../public/assets/images/India.svg");
             top: 41%;
             left: 41%;
         }
         .southKorea-container {
-            background-image: url("../assets/photos/Map-Film/Korea.svg");
+            background-image: url("../../public/assets/images/Korea.svg");
             top: 27%;
             left: 65%;
         }
         .greateBritan-container {
-            background-image: url("../assets/photos/Map-Film/Britain.png");
+            background-image: url("../../public/assets/images/Britain.png");
             background-position: center center;
             top: 16%;
             left: -6%;
@@ -91,6 +87,7 @@ export default {
             top: 20%;
             left: 110%;
             opacity: 0;
+            display: none;
         }
     }
     .flags:hover {
@@ -98,10 +95,10 @@ export default {
         width: 110px;
         transition: 0.3s;
         h3 {
+            display: block;
             animation-name: flagName;
             animation-duration: 0.3s;
             opacity: 1;
-            z-index: 0;
         }
     }
 }

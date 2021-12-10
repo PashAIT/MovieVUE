@@ -13,12 +13,7 @@ export default {};
 
 <style lang="scss" scoped>
 
-@mixin flexJCAICenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+@import '../assets/mixins.scss';
 
 
 .main {
@@ -35,21 +30,15 @@ export default {};
       margin-bottom: 100px;
     }
     .choose-an-area {
-      border: none;
       padding: 27px 166px;
-      letter-spacing: 0.3px;
-      background: #23dba8 0% 0% no-repeat padding-box;
       font-size: 30px;
-      border-radius: 50px;
-      color: #fff;
-      font-family: Aileron;
-      cursor: pointer;
-      transition: 0.4s;
+      @include button()
     }
-    .choose-an-area:hover {
-      background-color: #1ec194;
-      transition: 0.4s;
-    }
+     .choose-an-area:hover {
+       background-color: #1ec194;
+       transition: 0.4s;
+  }
+    
   }
 }
 </style>
