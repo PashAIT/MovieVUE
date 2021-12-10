@@ -1,12 +1,12 @@
 <template>
-  <div class="country">
+  <div class="country" @click="getCountryId">
     <div class="country-container">
       <div class="movies-container">
-        <div class="move1 movies">
+        <div class="move1 movies" v-for="movie in movies" :key="movie">
           <div class="img-div">
             <img
-              src="../assets/photos/Map-Film/Spider-Man.jpg"
-              alt="spiderMan"
+              src="../assets/photos/Map-Film/"
+              :alt= movie.title
               class="image"
               style="width: 100%"
             />
@@ -17,41 +17,7 @@
                 @click="$router.push('/movie')"
               />
             </div>
-            <h4 class="movies-title">Spider Man: No way home</h4>
-          </div>
-        </div>
-        <div class="move2 movies">
-          <div class="img-div">
-            <img
-              src="../assets/photos/Map-Film/Spider-Man.jpg"
-              alt="spiderMan"
-              class="image"
-              style="width: 100%"
-            />
-            <div class="middle">
-              <img
-                class="play-img"
-                src="../assets/photos/Map-Film/play-icon.png"
-              />
-            </div>
-            <h4 class="movies-title">Spider Man: No way home</h4>
-          </div>
-        </div>
-        <div class="move3 movies">
-          <div class="img-div">
-            <img
-              src="../assets/photos/Map-Film/Spider-Man.jpg"
-              alt="spiderMan"
-              class="image"
-              style="width: 100%"
-            />
-            <div class="middle">
-              <img
-                class="play-img"
-                src="../assets/photos/Map-Film/play-icon.png"
-              />
-            </div>
-            <h4 class="movies-title">Spider Man: No way home</h4>
+            <h4 class="movies-title">{{ movie.title }}</h4>
           </div>
         </div>
       </div>
@@ -62,16 +28,46 @@
           @click="$router.push('/map')"
         />
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { collection, onSnapshot, query } from "@firebase/firestore";
+import { db } from "../firebase/firebase";
+
+export default {
+  data() {
+    return {
+      movies: [],
+      param: "",
+    };
+  },
+  mounted() {
+    this.useCountries();
+  },
+  methods: {
+    useCountries() {
+      const q = query(collection(db, "Movies"));
+      onSnapshot(q, (querySnapshot) => {
+        const result = [];
+        querySnapshot.forEach((doc) => {
+          result.push(doc?.data());
+        });
+        let url = window.location.href.split("?");
+        this.param = url[1]
+        this.movies = result.filter(el=>{return el.countryId== this.param})
+       console.log(this.movies);
+      });
+    },
+  },
+};
+
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/mixins.scss';
+@import "../assets/mixins.scss";
 .country {
   background-color: #000000;
   font-family: Aileron;
