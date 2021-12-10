@@ -5,7 +5,7 @@
         <div class="move1 movies" v-for="movie in movies" :key="movie">
           <div class="img-div">
             <img
-              src="../assets/photos/Map-Film/"
+              src="../../public/assets/images/theHateYouGive.jpg"
               :alt= movie.title
               class="image"
               style="width: 100%"
@@ -14,7 +14,7 @@
               <img
                 class="play-img"
                 src="../assets/photos/Map-Film/play-icon.png"
-                @click="$router.push('/movie')"
+                @click="$router.push(`/movie?${movie.countryId}/${movie.id}`)"
               />
             </div>
             <h4 class="movies-title">{{ movie.title }}</h4>
@@ -22,6 +22,7 @@
         </div>
       </div>
       <div class="globus">
+         <button class="choose-an-area" @click="$router.push('/contrast-and-comparsion')">Contrast and comparison</button>
         <img
           src="../assets/photos/Map-Film/Globe.svg"
           alt="Globus"
@@ -58,7 +59,6 @@ export default {
         let url = window.location.href.split("?");
         this.param = url[1]
         this.movies = result.filter(el=>{return el.countryId== this.param})
-       console.log(this.movies);
       });
     },
   },
@@ -141,6 +141,16 @@ export default {
     }
     .globus {
       @include globusTransform();
+      .choose-an-area {
+      padding: 17px 46px;
+      font-size: 30px;
+      margin-right:100px;
+      @include button()
+    }
+     .choose-an-area:hover {
+       background-color: #1ec194;
+       transition: 0.4s;
+  }
     }
   }
 }

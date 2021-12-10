@@ -3,7 +3,7 @@
     <div
       :class="`container${country.id}`"
       class="flags"
-      @click="$router.push('/country')"
+      @click="$router.push(`/country?${country.id}`)"
       v-for="country in countries"
       :key="country"
     >

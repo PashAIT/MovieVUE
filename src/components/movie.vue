@@ -2,44 +2,27 @@
   <div class="movie">
     <div class="movie-container">
       <div class="movie-img">
-        <img src="../assets/photos/Map-Film/Spider-Man.jpg" alt="" />
-        <h3>Spider Man: No way home</h3>
+        <img 
+          :src="`../../public/assets/images/${movie.image}`" alt="" />
+        <h3>{{ movie.title }}</h3>
       </div>
       <div class="right-container">
         <div class="movie-trailer">
           <p>Trailer</p>
+          <iframe :src="`https://www.youtube.com/embed/${movie.trailer}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <button class="choose-an-area" @click="$router.push('/map')">
-          Choose an area
-        </button>
       </div>
     </div>
     <div class="movie-info">
       <p class="movie-text">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
-        recusandae! Alias ea voluptatibus saepe laboriosam recusandae dolor,
-        similique illo expedita libero, voluptatum doloribus placeat! Ad nemo
-        voluptatem dolorum veniam eum? Praesentium sit cum nihil incidunt
-        commodi, dolore velit tempora ut similique possimus officiis libero
-        placeat, quis fugit nostrum aliquam unde consequuntur blanditiis
-        aspernatur a non ipsam hic deleniti beatae. Hic? Expedita maiores,
-        incidunt enim nobis voluptate dolorem eos illum perspiciatis animi quae
-        asperiores, ut suscipit voluptas praesentium nulla fugiat. Error nihil
-        architecto sit at fuga atque repellat aliquid quisquam modi? Nobis neque
-        mollitia ipsum quod natus molestias, harum molestiae minus. Voluptas
-        ipsa dolorem sapiente animi necessitatibus nulla voluptatibus, ipsum
-        veritatis tenetur, esse adipisci cupiditate numquam, unde tempore quidem
-        expedita praesentium. Error, aliquid esse? Voluptates vero aliquam enim
-        quisquam similique accusamus nostrum, ratione minus sint quos quis
-        quidem nobis sunt earum voluptatibus cumque architecto voluptatum culpa
-        quo maiores cum quod pariatur!
+        {{ movie.discription }}
       </p>
       <div class="controls">
         <img
           src="../assets/photos/Map-Film/Arrow.svg"
           alt=""
           class="arrow-up"
-          @click="$router.push('/country')"
+          @click="$router.push(`/country?${countryId}`)"
         />
         <div class="globus">
           <img
@@ -54,7 +37,39 @@
 </template>
 
 <script>
-export default {};
+import { collection, onSnapshot, query } from "@firebase/firestore";
+import { db } from "../firebase/firebase";
+
+export default {
+  data() {
+    return {
+      movie: [],
+      movieId: '',
+      countryId:''
+    };
+  },
+  mounted() {
+    this.useCountries();
+  },
+  methods: {
+    useCountries() {
+      const q = query(collection(db, "Movies"));
+      onSnapshot(q, (querySnapshot) => {
+        const result = [];
+        querySnapshot.forEach((doc) => {
+          result.push(doc?.data());
+        });
+
+        let url = window.location.href.split("?");
+        this.movieId = url[1].substring( url[1].indexOf("/") + 1 );
+        this.countryId = url[1].substring(0, url[1].indexOf("/") );
+        console.log(this.countryId);
+        this.movie = result.filter(el=>{return el.id == this.movieId && el.countryId == this.countryId })[0]
+        console.log(this.movie.discription);
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -103,16 +118,12 @@ export default {};
           color: #fff;
           font-size: 20px;
         }
+        iframe{
+          width:100% ;
+          height: 100%;
+        }
       }
-      .choose-an-area {
-        padding: 27px 166px;
-        font-size: 30px;
-        @include button();
-      }
-      .choose-an-area:hover {
-        background-color: #1ec194;
-        transition: 0.4s;
-      }
+     
     }
   }
   .movie-info {

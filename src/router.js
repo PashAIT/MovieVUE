@@ -3,6 +3,7 @@ import WelcomePage from './components/welcomePage'
 import MapPage from './components/map'
 import Country from './components/country'
 import Movie from './components/movie'
+import ContrastAndComprasion from './components/contrastAndComprasion'
 
 
 export default createRouter({
@@ -12,6 +13,7 @@ export default createRouter({
         { path:'/map' , component: MapPage },
         { path:'/country' , component: Country },
         { path:'/movie' , component: Movie },
+        { path:'/contrast-and-comparsion' , component: ContrastAndComprasion}
 
         
     ]   
