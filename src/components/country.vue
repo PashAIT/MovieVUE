@@ -1,14 +1,15 @@
 <template>
   <div class="country" @click="getCountryId">
-    <div class="country-container">
+    
+    <div class="country-container" :style="{'background-image':'url(assets/images/country-background' +  movies[0]?.backgroundId +'.svg)'}">
       <div class="movies-container">
         <div class="move1 movies" v-for="movie in movies" :key="movie">
           <div class="img-div">
             <img
-              src="../../public/assets/images/theHateYouGive.jpg"
-              :alt= movie.title
+              :src="`assets/images/`+ movie.image"
+              :alt="movie.title"
               class="image"
-              style="width: 100%"
+              style="width: 100% ; height:100%"
             />
             <div class="middle">
               <img
@@ -22,14 +23,18 @@
         </div>
       </div>
       <div class="globus">
-         <button class="choose-an-area" @click="$router.push('/contrast-and-comparsion')">Contrast and comparison</button>
+        <button
+          class="choose-an-area"
+          @click="$router.push('/contrast-and-comparsion')"
+        >
+          Contrast and comparison
+        </button>
         <img
           src="../assets/photos/Map-Film/Globe.svg"
           alt="Globus"
           @click="$router.push('/map')"
         />
       </div>
-
     </div>
   </div>
 </template>
@@ -45,6 +50,7 @@ export default {
       param: "",
     };
   },
+  
   mounted() {
     this.useCountries();
   },
@@ -57,13 +63,16 @@ export default {
           result.push(doc?.data());
         });
         let url = window.location.href.split("?");
-        this.param = url[1]
-        this.movies = result.filter(el=>{return el.countryId== this.param})
+        this.param = url[1];
+        this.movies = result.filter((el) => {
+          return el.countryId == this.param;
+        });
+        console.log(this.movies[0].backgroundId);
       });
     },
   },
-};
 
+};
 </script>
 
 <style lang="scss" scoped>
@@ -73,7 +82,6 @@ export default {
   font-family: Aileron;
   &-container {
     height: 100vh;
-    background-image: url("../assets/photos/Map-Film/united-kingdom.svg");
     background-size: 100% 100%;
     background-position: center center;
     display: flex;
@@ -113,6 +121,7 @@ export default {
             transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
             text-align: center;
+            display: none;
           }
 
           .play-img {
@@ -126,31 +135,38 @@ export default {
           font-size: 20px;
           text-align: center;
         }
-        .img-div:hover {
-          .image {
-            opacity: 0.6;
-          }
-        }
+        
 
         .img-div:hover {
           .middle {
+            display: block;
             opacity: 1;
+            background-color: rgba(0,0,0,0.5);
+            width: 100%;
+            height: 100%;
+            transition: 0.5s;
+            border-radius:20px ;
+              img{
+                margin-top:50px
+              }            
           }
         }
       }
     }
     .globus {
+      display: flex;
+      justify-content: space-between;
       @include globusTransform();
       .choose-an-area {
-      padding: 17px 46px;
-      font-size: 30px;
-      margin-right:100px;
-      @include button()
-    }
-     .choose-an-area:hover {
-       background-color: #1ec194;
-       transition: 0.4s;
-  }
+        padding: 17px 46px;
+        font-size: 30px;
+        margin-right: 100px;
+        @include button();
+      }
+      .choose-an-area:hover {
+        background-color: #1ec194;
+        transition: 0.4s;
+      }
     }
   }
 }

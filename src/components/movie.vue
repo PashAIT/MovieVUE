@@ -3,7 +3,7 @@
     <div class="movie-container">
       <div class="movie-img">
         <img 
-          :src="`../../public/assets/images/${movie.image}`" alt="" />
+          :src="`assets/images/${movie.image}`" alt="" />
         <h3>{{ movie.title }}</h3>
       </div>
       <div class="right-container">

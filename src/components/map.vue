@@ -80,6 +80,7 @@ export default {
     width: 70px;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
     border-radius: 100%;
     position: relative;
     position: absolute;

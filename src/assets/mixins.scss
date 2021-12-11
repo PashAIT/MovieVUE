@@ -1,6 +1,4 @@
 @mixin globusTransform {
-  display: flex;
-  justify-content: flex-end;
   img {
     cursor: pointer;
     transform: rotate(0deg);
